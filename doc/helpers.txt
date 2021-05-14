@@ -1,0 +1,85 @@
+*laravel-helpers* laravel helpers doc
+
+version: 6.x
+==========================================================================
+CONTENTS
+
+  1. Intro ............................................ |helpers-intro|
+  2. Available Methods ................................ |available-methods|
+    2.1 Arrays & Objects .............................. |array-object|
+    2.2 Paths ......................................... |paths|
+    2.2 Strings ....................................... |strings|
+    2.3 URLS .......................................... |urls|
+    2.4 Miscellaneous ................................. |miscellaneous|
+
+=========================================================================
+INTRODUCTION                                           *helpers-intro*
+
+Laravel includes a variety of global "helper" PHP functions. Many of these
+functions are used by the framework itself; however, you are free to use them
+in your own applications if you find them convenient.
+
+=========================================================================
+AVAILEABLE METHODS                                    *available-methods*
+
+2.1 Arrays & Objects                                  *array-object*
+
+Arr::add()                                            *Arr::add*
+The Arr::add() method adds a given key / value pair to an array if the given
+key doesn't already exist in the array or is set to 'null' :
+
+<?php >
+  use Illuminate\Support\Arr;
+
+  $array = Arr::add(['name' => 'Desk'], 'price', 100);
+  // ['name' => 'Desk', 'price' => 100]
+  $array = Arr::add(['name' => 'Desk', 'price' => null], 'price', 100);
+  // ['name' => 'Desk', 'price' => 100]
+>
+
+Arr:collapse()                                       *Array::collapse*
+The Arr::collapse method collapses an array of arrays into a single array:
+
+<?php >
+  use Illuminate\Support\Arr;
+
+  $array = Arr::collapse([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+  // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+<?>
+
+Arr::crossJoin()                                      *Arr::crossJoin*
+The Arr::crossJoin method cross joins the given arrays, returning a Cartesian
+product with all possible permutations:
+
+<?php >
+  use Illuminate\Support\Arr;
+
+  $matrix = Arr::crossJoin([1, 2], ['a', 'b']);
+
+  /*
+      [
+          [1, 'a'],
+          [1, 'b'],
+          [2, 'a'],
+          [2, 'b'],
+      ]
+  */
+
+  $matrix = Arr::crossJoin([1, 2], ['a', 'b'], ['I', 'II']);
+
+  /*
+      [
+          [1, 'a', 'I'],
+          [1, 'a', 'II'],
+          [1, 'b', 'I'],
+          [1, 'b', 'II'],
+          [2, 'a', 'I'],
+          [2, 'a', 'II'],
+          [2, 'b', 'I'],
+          [2, 'b', 'II'],
+      ]
+  */
+<?>
+
+=============================================================================
+  vim:tw=78:ts=2:sts=2:sw=2:ft=help:
