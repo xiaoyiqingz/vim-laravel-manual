@@ -1332,103 +1332,178 @@ returned:
   $previous = url()->previous();
 <?>
 
+-----------------------------------------------------------------------------
 2.5 Miscellaneous                                     *miscellaneous*
 abort()
-The abort function throws an HTTP exception which will be rendered by the exception handler:
+The abort function throws an HTTP exception which will be rendered by the
+exception handler:
 
-abort(403);
-You may also provide the exception's response text and custom response headers:
+<?php >
+  abort(403);
+<?>
 
-abort(403, 'Unauthorized.', $headers);
+You may also provide the exception's response text and custom response
+headers:
+
+<?php >
+  abort(403, 'Unauthorized.', $headers);
+<?>
+
 abort_if()
-The abort_if function throws an HTTP exception if a given boolean expression evaluates to true:
+The abort_if function throws an HTTP exception if a given boolean expression
+evaluates to true:
 
-abort_if(! Auth::user()->isAdmin(), 403);
-Like the abort method, you may also provide the exception's response text as the third argument and an array of custom response headers as the fourth argument.
+<?php >
+  abort_if(! Auth::user()->isAdmin(), 403);
+<?>
+
+Like the abort method, you may also provide the exception's response text as
+the third argument and an array of custom response headers as the fourth
+argument.
 
 abort_unless()
-The abort_unless function throws an HTTP exception if a given boolean expression evaluates to false:
+The abort_unless function throws an HTTP exception if a given boolean
+expression evaluates to false:
 
-abort_unless(Auth::user()->isAdmin(), 403);
-Like the abort method, you may also provide the exception's response text as the third argument and an array of custom response headers as the fourth argument.
+<?php >
+  abort_unless(Auth::user()->isAdmin(), 403);
+<?>
+
+Like the abort method, you may also provide the exception's response text as
+the third argument and an array of custom response headers as the fourth argument.
 
 app()
 The app function returns the service container instance:
 
-$container = app();
+<?php >
+  $container = app();
+<?>
+
 You may pass a class or interface name to resolve it from the container:
 
-$api = app('HelpSpot\API');
-auth()
-The auth function returns an authenticator instance. You may use it instead of the Auth facade for convenience:
+<?php >
+  $api = app('HelpSpot\API');
+<?>
 
-$user = auth()->user();
+auth()
+The auth function returns an authenticator instance. You may use it instead
+of the Auth facade for convenience:
+
+<?php >
+  $user = auth()->user();
+<?>
+
 If needed, you may specify which guard instance you would like to access:
 
-$user = auth('admin')->user();
+<?php >
+  $user = auth('admin')->user();
+<?>
+
 back()
-The back function generates a redirect HTTP response to the user's previous location:
+The back function generates a redirect HTTP response to the user's
+previous location:
 
-return back($status = 302, $headers = [], $fallback = false);
+<?php >
+  return back($status = 302, $headers = [], $fallback = false);
 
-return back();
+  return back();
+<?>
+
 bcrypt()
-The bcrypt function hashes the given value using Bcrypt. You may use it as an alternative to the Hash facade:
+The bcrypt function hashes the given value using Bcrypt. You may use it as
+an alternative to the Hash facade:
+<?php >
+  $password = bcrypt('my-secret-password');
+<?>
 
-$password = bcrypt('my-secret-password');
 blank()
 The blank function returns whether the given value is "blank":
 
-blank('');
-blank('   ');
-blank(null);
-blank(collect());
+<?php >
+  blank('');
+  blank('   ');
+  blank(null);
+  blank(collect());
 
-// true
+  // true
 
-blank(0);
-blank(true);
-blank(false);
+  blank(0);
+  blank(true);
+  blank(false);
 
-// false
+  // false
+<?>
+
 For the inverse of blank, see the filled method.
 
 broadcast()
 The broadcast function broadcasts the given event to its listeners:
 
-broadcast(new UserRegistered($user));
+<?php >
+  broadcast(new UserRegistered($user));
+<?>
+
 cache()
-The cache function may be used to get values from the cache. If the given key does not exist in the cache, an optional default value will be returned:
+The cache function may be used to get values from the cache. If the given
+key does not exist in the cache, an optional default value will be returned:
 
-$value = cache('key');
+<?php >
+  $value = cache('key');
 
-$value = cache('key', 'default');
-You may add items to the cache by passing an array of key / value pairs to the function. You should also pass the number of seconds or duration the cached value should be considered valid:
+  $value = cache('key', 'default');
+<?>
 
-cache(['key' => 'value'], 300);
+You may add items to the cache by passing an array of key / value pairs to
+the function. You should also pass the number of seconds or duration the
+cached value should be considered valid:
 
-cache(['key' => 'value'], now()->addSeconds(10));
+<?php >
+  cache(['key' => 'value'], 300);
+
+  cache(['key' => 'value'], now()->addSeconds(10));
+<?>
+
 class_uses_recursive()
-The class_uses_recursive function returns all traits used by a class, including traits used by all of its parent classes:
+The class_uses_recursive function returns all traits used by a class,
+including traits used by all of its parent classes:
 
-$traits = class_uses_recursive(App\User::class);
+<?php >
+  $traits = class_uses_recursive(App\User::class);
+<?>
+
 collect()
 The collect function creates a collection instance from the given value:
 
-$collection = collect(['taylor', 'abigail']);
+<?php >
+  $collection = collect(['taylor', 'abigail']);
+<?>
+
 config()
-The config function gets the value of a configuration variable. The configuration values may be accessed using "dot" syntax, which includes the name of the file and the option you wish to access. A default value may be specified and is returned if the configuration option does not exist:
+The config function gets the value of a configuration variable.
+The configuration values may be accessed using "dot" syntax, which includes
+the name of the file and the option you wish to access. A default value may
+be specified and is returned if the configuration option does not exist:
 
-$value = config('app.timezone');
+<?php >
+  $value = config('app.timezone');
 
-$value = config('app.timezone', $default);
-You may set configuration variables at runtime by passing an array of key / value pairs:
+  $value = config('app.timezone', $default);
+<?>
 
-config(['app.debug' => true]);
-cookie()
+You may set configuration variables at runtime by passing an array of
+key / value pairs:
+
+<?php >
+  config(['app.debug' => true]);
+  cookie()
+<?>
+
 The cookie function creates a new cookie instance:
 
-$cookie = cookie('name', 'value', $minutes);
+<?php >
+  $cookie = cookie('name', 'value', $minutes);
+<?>
+
 csrf_field()
 The csrf_field function generates an HTML hidden input field containing the value of the CSRF token. For example, using Blade syntax:
 
